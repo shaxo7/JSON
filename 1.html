@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style1.css">
+    <script src="main.js"></script>
+</head>
+<body>
+    <div class="header">Array Table using<i>Json</i></div>
+    <div class="input-box">
+        <div class="left-box">
+            <input type="text" class="inp-values" id="nameInput" placeholder="Name"><br>
+        <input type="number" class="inp-values" id="mathInput" placeholder="Math"><br>
+        <input type="number" class="inp-values" id="englishInput" placeholder="English"><br>
+        <input type="number" class="inp-values" id="chemistryInput" placeholder="Chemistry"><br>
+        <input type="number" class="inp-values" id="physicsInput" placeholder="Physics"><br>
+        <button id="addButton" class="btn-add">Add in Table</button><br>
+        <br>
+    </div>
+        <div class="right-box">
+            <table id="scoresTable">
+                <thead>
+                    <tr>
+                        <th colspan="1">Name</th>
+                        <th colspan="4">Subject</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows will be added here using JavaScript -->
+                </tbody>
+            </table>
+        </div>
+</div>
+<div class="footer">
+    <a href="sort.html">
+        <button type="submit" href="sort.html" class="btn-asc-des">ascending & descending  	&rarr;</button>
+        </a>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const scoresTable = document.getElementById("scoresTable");
+    const nameInput = document.getElementById("nameInput");
+    const mathInput = document.getElementById("mathInput");
+    const englishInput = document.getElementById("englishInput");
+    const chemistryInput = document.getElementById("chemistryInput");
+    const physicsInput = document.getElementById("physicsInput");
+    const addButton = document.getElementById("addButton");
+
+    addButton.addEventListener("click", function() {
+        const name = nameInput.value.trim();
+        const math = parseInt(mathInput.value) || 0;
+        const english = parseInt(englishInput.value) || 0;
+        const chemistry = parseInt(chemistryInput.value) || 0;
+        const physics = parseInt(physicsInput.value) || 0;
+
+        if (name !== "") {
+            addEntryToTable(name, math, english, chemistry, physics);
+            clearInputFields();
+        }
+    });
+
+    function addEntryToTable(name, math, english, chemistry, physics) {
+        const newRow = scoresTable.insertRow();
+        newRow.insertCell(0).textContent = name;
+        newRow.insertCell(1).textContent = math;
+        newRow.insertCell(2).textContent = english;
+        newRow.insertCell(3).textContent = chemistry;
+        newRow.insertCell(4).textContent = physics;
+    }
+
+    function clearInputFields() {
+        nameInput.value = "";
+        mathInput.value = "";
+        englishInput.value = "";
+        chemistryInput.value = "";
+        physicsInput.value = "";
+    }
+});
+
+const data = [
+    ["","Math", "English", "Chemistry", "Physics"],
+    ["John", "78", "90", "64", "89"],
+    ["Mike", "67", "86", "59", "70"],
+    ["Julia", "82", "75", "73", "84"],
+    ["Tom", "76", "64", "59", "72"],
+    ["Barbara", "90", "85", "88", "92"],
+    ["Noah","80","86","89","90"]
+];
+
+const table = document.querySelector("table");
+
+data.forEach(rowData => {
+    const row = document.createElement("tr");
+    
+    rowData.forEach(cellData => {
+        const cell = document.createElement("td");
+        cell.textContent = cellData;
+        row.appendChild(cell);
+    });
+    
+    table.appendChild(row);
+});
+document.addEventListener("DOMContentLoaded", function() {
+    const userTable = document.getElementById("userTable");
+    const usernameInput = document.getElementById("usernameInput");
+    const addButton = document.getElementById("addButton");
+
+    addButton.addEventListener("click", function() {
+        const username = usernameInput.value.trim();
+        if (username !== "") {
+            addUserToTable(username);
+            usernameInput.value = ""; // Clear the input field
+        }
+    });
+
+    function addUserToTable(username) {
+        const newRow = userTable.insertRow();
+        const cell = newRow.insertCell(0);
+        cell.textContent = username;
+    }
+})
+</script>
+
+
+</body>
+</html>

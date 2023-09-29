@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <div class="header">Array Table using<i>Json</i></div>
+    <div class="input-box">
+        <div class="left-box">
+            <input type="text" class="inp-values" id="nameInput" placeholder="Name"><br>
+        <input type="number" class="inp-values" id="mathInput" placeholder="Math"><br>
+        <input type="number" class="inp-values" id="englishInput" placeholder="English"><br>
+        <input type="number" class="inp-values" id="chemistryInput" placeholder="Chemistry"><br>
+        <input type="number" class="inp-values" id="physicsInput" placeholder="Physics"><br>
+        <button id="addButton" class="btn-add" onclick="tablefunction()">Add in Table</button><br>
+        <br>
+    </div>
+        <div class="right-box">
+            <table id="scoresTable">
+                <thead>
+                    <tr>
+                        <th colspan="1">Name</th>
+                        <th colspan="4">Subject</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows will be added here using JavaScript -->
+                </tbody>
+            </table>
+        </div>
+</div>
+<div class="footer">
+    <a href="sort.html">
+        <button type="submit" class="btn-asc-des">ascending & descending  	&rarr;</button>
+        </a>
+</div>
+<script>
+    function tablefunction(){
+        const node= document.createElement("td");
+        const textnode= document.createTextNode("add");
+        node.appendChild(textnode);
+        document.getElementById("scoresTable").appendChild(node);
+    }
+
+const data = [
+    ["","Math", "English", "Chemistry", "Physics"],
+    ["John", "78", "90", "64", "89"],
+    ["Mike", "67", "86", "59", "70"],
+    ["Julia", "82", "75", "73", "84"],
+    ["Tom", "76", "64", "59", "72"],
+    ["Barbara", "90", "85", "88", "92"],
+    ["Noah","80","86","89","90"]
+];
+
+const table = document.querySelector("table");
+
+data.forEach(rowData => {
+    const row = document.createElement("tr");
+    
+    rowData.forEach(cellData => {
+        const cell = document.createElement("td");
+        cell.textContent = cellData;
+        row.appendChild(cell);
+    });
+
+    table.appendChild(row);
+});
+document.addEventListener("DOMContentLoaded", function() {
+    const userTable = document.getElementById("userTable");
+    const usernameInput = document.getElementById("usernameInput");
+    const addButton = document.getElementById("addButton");
+
+    addButton.addEventListener("click", function() {
+        const username = usernameInput.value.trim();
+        if (username !== "") {
+            addUserToTable(username);
+            usernameInput.value = ""; // Clear the input field
+        }
+    });
+
+    function addUserToTable(username) {
+        const newRow = userTable.insertRow();
+        const cell = newRow.insertCell(0);
+        cell.textContent = username;
+    }
+})
+</script>
+</body>
+</html>

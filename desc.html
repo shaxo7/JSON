@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+</head>
+<body>
+  <!DOCTYPE html>
+<html>
+<head>
+    <title>JSON Array Table Example</title>
+</head>
+<body>
+<h1 class="heading-sort">Array Table In JSON using <strong><i>Descending order</i></strong></h1>
+<table border = 1>
+    <tr>
+        <th colspan="1">Name</th>
+        <th colspan="5">Subject</th>
+    </tr>
+</table>
+<a href="sort.html">
+<button type="submit" href="index.html" class="btn-back">&larr;  Ascending order</button>
+</a>
+<a href="index.html">
+    <button type="submit" href="index.html" class="btn-desc">&larr;  Go To First Page</button>
+    </a>
+<script>
+const data = [
+    ["Z","Math", "English", "Chemistry", "Physics"],
+    ["John", "78", "90", "64", "89"],
+    ["Mike", "67", "86", "59", "70"],
+    ["Julia", "82", "75", "73", "84"],
+    ["Tom", "76", "64", "59", "72"],
+    ["Barbara", "90", "85", "88", "92"],
+    ["Noah","80","86","89","90"]
+]; 
+data.sort(function(a, b) {
+    return b[0].localeCompare(a[0]);
+});
+
+
+const table = document.querySelector("table");
+
+data.forEach(rowData => {
+    const row = document.createElement("tr");
+    
+    rowData.forEach(cellData => {
+        const cell = document.createElement("td");
+        cell.textContent = cellData;
+        row.appendChild(cell);
+    });
+    
+    table.appendChild(row);
+});
+</script>
+
+
+</body>
+</html>
